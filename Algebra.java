@@ -180,13 +180,26 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-	int root=div(x, 2);
-	int count=0;
-	while (minus(root,count)!=0) {
-		count=root;
-		root=div(plus(count,(div(x, count))),2);
+		if(x<0) return -1;
+		if (x==0 || x==1)return 1;
+		
+		int epsilon=1;
+		int theNumber= x;
+		int root =0;
+		
+	while (epsilon<= theNumber) {
+		int half= div((plus(epsilon,theNumber)),2);
+		int midSqur= times(half, half);
+		if(midSqur==x)return half;
+		if(midSqur<x)
+		{
+			epsilon=half+1;
+			root=half;
+		}else{
+			theNumber= half-1;
+		}
 	}
      return root;
-	}
-		  	  
+	
+	}		  	  
 }
