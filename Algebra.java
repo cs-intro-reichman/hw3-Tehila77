@@ -27,16 +27,11 @@ public class Algebra {
 
 	}
 
-
-
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 	int sum=0;
 	if(x1 == 0) return x2;
 	if(x2 == 0) return x1;
-
-
-	// if x1,x2>0
     if(x1 >0 && x2 > 0)
 	{
 	  for(int i=0 ; i < x2 ; i++) sum++; 
@@ -127,20 +122,12 @@ public class Algebra {
 			int theX2=Math.abs(x2);
 			for(int i=0 ; i<theX2 ; i++)
 				sum=sum+ plus(sum, theX1);
-            int total = 0 -sum;
+            int total = minus(1, sum);
 			return total;
-		
+	
 		}
-
-
 	     return sum;
 	    }
-
-
-
-
-
-
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
@@ -169,6 +156,26 @@ public class Algebra {
 			}
 			return count;
 		}
+		if(x1<0 && x2>0)
+		{
+		int theX1=Math.abs(x1);
+		   while (theX1>=x2) 
+		   {
+			theX1=minus(theX1, x2);
+			count++;
+		   }
+		   return minus(0,count);	
+		}
+		if(x2<0 && x1>0)
+		{
+		int theX2=Math.abs(x2);
+		   while (x1>=theX2) 
+		   {
+			x1=minus(x1,theX2);
+			count++;
+		   }
+		   return minus(0,count);	
+		}
 		return count;
 	}
 	// Returns x1 % x2
@@ -181,7 +188,7 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		if(x<0) return -1;
-		if (x==0 || x==1)return 1;
+		if (x==0 || x==1)return x;
 		
 		int epsilon=1;
 		int theNumber= x;
