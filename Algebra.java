@@ -140,6 +140,15 @@ public class Algebra {
 			sum=times(sum,x);
 		return sum;
 		}
+		if(n<0)
+		{
+			int theN=Math.abs(n);
+			if(mod(theN,2)==0)
+			{
+			for(int i=0 ; i<theN ; i++) sum=times(sum,x);
+		return sum;
+			}else return minus(0, sum);
+		}
  	return sum;
 	}
 	// Returns the integer part of x1 / x2 
