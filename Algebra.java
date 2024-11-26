@@ -159,8 +159,21 @@ public class Algebra {
 		int count = 0;
 		if(x1>x2)
 		{
-			while (x1>=x2) {
-				x1=minus(x1, x2);
+			int newX1=Math.abs(x1);
+			int newX2=Math.abs(x2);
+
+			while (newX1>=newX2) {
+				newX1=minus(newX1, newX2);
+				count++;
+			}
+			return count;
+		}
+		if(x2>x1)
+		{
+			int newX1=Math.abs(x1);
+			int newX2=Math.abs(x2);
+			while (newX2>=newX1) {
+				x2=minus(newX2, newX1);
 				count++;
 			}
 			return count;
