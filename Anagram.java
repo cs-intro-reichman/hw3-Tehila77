@@ -15,7 +15,7 @@ public class Anagram {
 		
 		// Performs a stress test of randomAnagram 
 		String str = "1234567";
-		Boolean pass = true;
+		boolean pass = true;
 		//// 10 can be changed to much larger values, like 1000
 		for (int i = 0; i < 10; i++) {
 			String randomAnagram = randomAnagram(str);
@@ -28,22 +28,61 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
+		str1=preProcess(str1);
+		str2=preProcess(str2);
+		if (str1.length() != str2.length())return false;
+
+		for(int i=0;i<str1.length();i++)
+		{
+			int count1=0;
+			int count2=0;
+			char place =str1.charAt(i);
+			for(int j=0 ; j<str1.length() ; j++)
+			{
+				if(str1.charAt(j)== place)count1++;
+				if(str2.charAt(j)== place)count2++;
+			}
+			if(count1 != count2)return false;
+
+		}
+		return true;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String lowerCase="";
+		for(int i=0; i< str.length(); i++)
+		{
+			char c=str.charAt(i);
+			if(c >= 'A' && c <='Z')
+			{
+				String change= ""+(char)(c+32);
+				lowerCase= lowerCase +change;
+			}
+			else if (c > 'a' || c <'z')
+			{
+				lowerCase=lowerCase +"";
+			}
+            else lowerCase=lowerCase +c ;
+
+			}
+		return lowerCase;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+	 str=preProcess(str);
+	 String theRandom="";
+	 int theLength = str.length();
+	 for(int i=0;i< theLength;i++)
+	 {
+		int place= (int)(Math.random()*str.length());
+		theRandom= theRandom+ str.substring(0, place)+str.substring(place+1);
+	 }
+
+		return theRandom;
 	}
 }
