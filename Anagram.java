@@ -29,11 +29,11 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		str1 = preProcess(str1);
-		str2 = preProcess(str2);
+		str1 = removeSpace(preProcess(str1));
+		str2 = removeSpace(preProcess(str2));
 		if (str1.length() != str2.length())
 			return false;
-
+		
 		for (int i = 0; i < str1.length(); i++) {
 			int count1 = 0;
 			int count2 = 0;
@@ -65,9 +65,21 @@ public class Anagram {
 				lowerCase = lowerCase + change;
 			} else if ((c >= 'a' && c <= 'z') || c == ' ') {
 				lowerCase = lowerCase + c;
-			} 
+			}
 		}
 		return lowerCase;
+	}
+
+	public static String removeSpace(String str){
+		String noSpace = "";
+		for (int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
+			if (c != ' ') {
+				noSpace += c;
+			}
+			
+		}
+		return noSpace;
 	}
 
 	// Returns a random anagram of the given string. The random anagram consists of
