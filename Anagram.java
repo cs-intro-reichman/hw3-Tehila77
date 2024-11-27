@@ -31,17 +31,18 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		str1 = removeSpace(preProcess(str1));
 		str2 = removeSpace(preProcess(str2));
+		System.out.println(str1 + " " + str2);
 		if (str1.length() != str2.length())
 			return false;
-		
+
 		for (int i = 0; i < str1.length(); i++) {
 			int count1 = 0;
 			int count2 = 0;
-			char place = str1.charAt(i);
+			char c = str1.charAt(i);
 			for (int j = 0; j < str1.length(); j++) {
-				if (str1.charAt(j) == place)
+				if (str1.charAt(j) == c)
 					count1++;
-				if (str2.charAt(j) == place)
+				if (str2.charAt(j) == c)
 					count2++;
 			}
 			if (count1 != count2)
@@ -70,14 +71,14 @@ public class Anagram {
 		return lowerCase;
 	}
 
-	public static String removeSpace(String str){
+	public static String removeSpace(String str) {
 		String noSpace = "";
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
 			if (c != ' ') {
 				noSpace += c;
 			}
-			
+
 		}
 		return noSpace;
 	}
@@ -86,12 +87,12 @@ public class Anagram {
 	// the same
 	// characters as the given string, re-arranged in a random order.
 	public static String randomAnagram(String str) {
-		str = preProcess(str);
 		String theRandom = "";
 		int theLength = str.length();
 		for (int i = 0; i < theLength; i++) {
-			int place = (int) (Math.random() * str.length());
-			theRandom = theRandom + str.substring(0, place) + str.substring(place + 1);
+			int index = (int) (Math.random() * str.length());
+			theRandom = theRandom + str.charAt(index);
+			str = str.substring(0, index) + str.substring(index + 1);
 		}
 
 		return theRandom;
