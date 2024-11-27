@@ -31,7 +31,6 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		str1 = removeSpace(preProcess(str1));
 		str2 = removeSpace(preProcess(str2));
-		System.out.println(str1 + " " + str2);
 		if (str1.length() != str2.length())
 			return false;
 
